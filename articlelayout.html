@@ -1,0 +1,264 @@
+<sly data-sly-use.model="com.training.project.core.models.ArticleLayoutModel"/>
+
+
+<div class="article-layout__sticky-header">
+
+    <div class="article-layout__progress-bar"></div>
+
+</div>
+
+<div class="article-layout">
+
+    <!-- Left Rail -->
+    <aside class="article-layout__sidebar">
+        <div class="article-layout__sidebar-inner">
+        <h3>ABOUT</h3>
+
+        <p>${model.aboutText}</p>
+
+        <h3>TABLE OF CONTENTS</h3>
+
+        <nav class="article-layout__toc">
+
+            <ul>
+
+                <li data-sly-repeat.section="${model.sections}">
+
+                    <a class="article-layout__toc-link" 
+                    href="#${section.sectionId}">
+                        ${section.title}
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </nav>
+
+        <a href="#article-top"
+           class="article-layout__back-to-top">
+
+            Back to top
+
+        </a>
+        </div>
+    </aside>
+
+    <!-- Content -->
+
+    <div class="article-layout__content">
+
+        <div id="article-top"></div>
+        <sly data-sly-list.section="${model.sections}">
+
+            <section
+                    id="${section.sectionId}"
+                    class="article-layout__section">
+
+                <h2>${section.title}</h2>
+
+                <p>${section.content}</p>
+
+            </section>
+
+            <sly data-sly-test="${sectionList.first && model.ctaHeading}">
+
+                <div class="article-layout__action-bar">
+
+                    <div class="article-layout__action-bar-content">
+
+                        <h2 class="article-layout__action-bar-title">
+                            ${model.ctaHeading}
+                        </h2>
+
+                        <a
+                                href="${model.ctaLink}"
+                                class="article-layout__action-bar-button">
+
+                            ${model.ctaButtonText}
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </sly>
+
+        </sly>
+        <div class="article-layout__faq">
+
+            <h2 class="article-layout__faq-title">
+                FAQs about recurring investing
+            </h2>
+
+            <div class="article-layout__faq-list">
+
+                <div class="article-layout__faq-item">
+                    <button class="article-layout__faq-question">
+                        <span>Is recurring investing a good idea?</span>
+                        <span class="article-layout__faq-icon">⌄</span>
+                    </button>
+
+                    <div class="article-layout__faq-answer">
+                        <p>
+                            Setting up recurring investing simplifies your life by
+                            automating the process. It can help you reach your savings
+                            goals because it ensures you stay consistent with your
+                            investments.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="article-layout__faq-item">
+                    <button class="article-layout__faq-question">
+                        <span>How much can you earn with regular investments?</span>
+                        <span class="article-layout__faq-icon">⌄</span>
+                    </button>
+
+                    <div class="article-layout__faq-answer">
+                        <p>
+                            The amount you earn from investments will vary based on
+                            your contribution amount, how frequently you contribute
+                            and the underlying investments.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="article-layout__faq-item">
+                    <button class="article-layout__faq-question">
+                        <span>Is recurring investing risky?</span>
+                        <span class="article-layout__faq-icon">⌄</span>
+                    </button>
+
+                    <div class="article-layout__faq-answer">
+                        <p>
+                            All investing involves some level of risk. Different
+                            investment types have different levels of risk. When it
+                            comes to investing, time is usually on your side.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="article-layout__faq-item">
+                    <button class="article-layout__faq-question">
+                        <span>Should you use an automated investment platform?</span>
+                        <span class="article-layout__faq-icon">⌄</span>
+                    </button>
+
+                    <div class="article-layout__faq-answer">
+                        <p>
+                            Whether you choose recurring investing depends on your
+                            goals and financial situation. Automated investing can
+                            help ensure you consistently contribute toward your goals.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+</div>
+
+<!-- =====================================
+     MOBILE ACTION BAR
+===================================== -->
+
+<div class="article-layout__mobile-nav">
+
+    <button
+        type="button"
+        class="article-layout__mobile-about-btn">
+
+        <span class="article-layout__mobile-icon">📄</span>
+
+        <span>About</span>
+
+    </button>
+
+    <button
+        type="button"
+        class="article-layout__mobile-toc-btn">
+
+        <span class="article-layout__mobile-icon">☰</span>
+
+        <span>Table of Contents</span>
+
+    </button>
+
+</div>
+
+<!-- =====================================
+     ABOUT DRAWER
+===================================== -->
+
+<div class="article-layout__drawer article-layout__drawer--about">
+
+    <div class="article-layout__drawer-content">
+
+        <button
+            type="button"
+            class="article-layout__drawer-close">
+
+            ✕
+
+        </button>
+
+        <h2 class="article-layout__drawer-title">
+            ABOUT
+        </h2>
+
+        <p>${model.aboutText}</p>
+
+    </div>
+
+</div>
+
+<!-- =====================================
+     TOC DRAWER
+===================================== -->
+
+<div class="article-layout__drawer article-layout__drawer--toc">
+
+    <div class="article-layout__drawer-content">
+
+        <button
+            type="button"
+            class="article-layout__drawer-close">
+
+            ✕
+
+        </button>
+
+        <h2 class="article-layout__drawer-title">
+            TABLE OF CONTENTS
+        </h2>
+
+        <ol class="article-layout__drawer-toc">
+
+            <li data-sly-repeat.section="${model.sections}">
+
+                <a class="article-layout__toc-link"
+                href="#${section.sectionId}">
+                    ${section.title}
+                </a>
+
+            </li>
+
+        </ol>
+
+        <a href="#article-top"
+           class="article-layout__drawer-top">
+
+            Back to top
+
+        </a>
+
+    </div>
+
+</div>
